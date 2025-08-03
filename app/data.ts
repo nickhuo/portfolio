@@ -47,26 +47,6 @@ export const PROJECTS: Project[] = [
   // },
 ]
 
-export const WORK_EXPERIENCE: WorkExperience[] = [
-  // 请更新为您的实际工作经历
-  {
-    company: 'Your Current Company',
-    title: 'Software Engineer',
-    start: '2023',
-    end: 'Present',
-    link: 'https://company-website.com',
-    id: 'work1',
-  },
-  {
-    company: 'Previous Company',
-    title: 'Junior Developer',
-    start: '2021',
-    end: '2023',
-    link: 'https://previous-company.com',
-    id: 'work2',
-  },
-  // 添加更多工作经历...
-]
 
 export const BLOG_POSTS: BlogPost[] = [
   {
