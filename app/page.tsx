@@ -14,7 +14,6 @@ import {
 import {
   PROJECTS,
   BLOG_POSTS,
-  EMAIL,
   SOCIAL_LINKS,
 } from './data'
 

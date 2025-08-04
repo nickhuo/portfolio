@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from 'next'
-import { Geist, Geist_Mono } from 'next/font/google'
+import { Inter } from 'next/font/google'
 import './globals.css'
 import { Header } from './header'
 import { Footer } from './footer'
@@ -20,14 +20,10 @@ export const metadata: Metadata = {
   },
 }
 
-const geist = Geist({
-  variable: '--font-geist',
+const inter = Inter({
+  variable: '--font-inter',
   subsets: ['latin'],
-})
-
-const geistMono = Geist_Mono({
-  variable: '--font-geist-mono',
-  subsets: ['latin'],
+  display: 'swap',
 })
 
 export default function RootLayout({
@@ -38,7 +34,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${geist.variable} ${geistMono.variable} bg-white tracking-tight antialiased dark:bg-[#111110]`}
+        className={`${inter.variable} bg-white tracking-normal antialiased dark:bg-[#111110]`}
       >
         <ThemeProvider
           enableSystem={true}
@@ -46,8 +42,8 @@ export default function RootLayout({
           storageKey="theme"
           defaultTheme="system"
         >
-          <div className="flex min-h-screen w-full flex-col font-[family-name:var(--font-inter-tight)]">
-            <div className="relative mx-auto w-full max-w-screen-sm flex-1 px-4 pt-20">
+          <div className="flex min-h-screen w-full flex-col font-[family-name:var(--font-inter)]">
+            <div className="relative mx-auto w-full max-w-screen-sm flex-1 px-6 pt-20">
               <Header />
               {children}
               <Footer />

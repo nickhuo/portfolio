@@ -22,10 +22,10 @@ export const PROJECTS: Project[] = [
   {
     name: 'Portfolio Website',
     description:
-      'A modern portfolio website built with Next.js and Motion Primitives.',
+      'A modern portfolio website built with Next.js and Motion.',
     link: 'https://nichol.com',
     video:
-      '/placeholder-project-video.mp4', // 替换为您的项目视频
+      '/placeholder-project-video.mp4', 
     id: 'project1',
   },
   // 添加更多项目...
@@ -58,21 +58,18 @@ export const BLOG_POSTS: BlogPost[] = [
 export const SOCIAL_LINKS: SocialLink[] = [
   {
     label: 'Github',
-    link: 'https://github.com/nickhuo', // 请更新为您的GitHub链接
+    link: 'https://github.com/nickhuo', 
   },
   {
     label: 'LinkedIn',
-    link: 'https://www.linkedin.com/in/nickhuo', // 请更新为您的LinkedIn链接
+    link: 'https://www.linkedin.com/in/nickhuo', 
   },
   {
     label: 'Twitter',
-    link: 'https://twitter.com/imnickhuo', // 请更新为您的Twitter链接
+    link: 'https://twitter.com/imnickhuo', 
   },
   {
     label: 'Email',
     link: 'mailto:jiajunhuo726@gmail.com', 
   }
-
 ]
-
-
