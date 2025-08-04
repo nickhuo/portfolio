@@ -46,6 +46,12 @@ export const BLOG_POSTS: BlogPost[] = [
     link: '/writing/exploring-the-intersection-of-design-ai-and-design-engineering',
     uid: 'writing-1',
   },
+  {
+    title: 'Behind the Build: My Tools & Workflow',
+    description: '“A craftsman must first sharpen his tools before he can do his work well”',
+    link: 'writing/behind-the-build-my-tools-workflow',
+    uid: 'writing-2',
+  }
   // 添加您的其他博客文章...
   // {
   //   title: 'Your Blog Post Title',
