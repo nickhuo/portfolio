@@ -1,14 +1,8 @@
 'use client'
-import { cn } from '@/lib/utils'
-import {
-  AnimatePresence,
-  motion,
-  TargetAndTransition,
-  Transition,
-  Variant,
-  Variants,
-} from 'motion/react'
+import { AnimatePresence, motion } from 'motion/react'
+import type { TargetAndTransition, Transition, Variant, Variants } from 'motion/react'
 import React from 'react'
+import { cn } from '@/lib/utils'
 
 export type PresetType = 'blur' | 'fade-in-blur' | 'scale' | 'fade' | 'slide'
 
@@ -132,7 +126,7 @@ const AnimationComponent: React.FC<{
       <motion.span className="inline-block whitespace-pre">
         {segment.split('').map((char, charIndex) => (
           <motion.span
-            key={`char-${charIndex}`}
+            key={`${segment}-char-${charIndex}-${char}`}
             aria-hidden="true"
             variants={variants}
             className="inline-block whitespace-pre"
@@ -177,7 +171,8 @@ const createVariantsWithTransition = (
 ): Variants => {
   if (!transition) return baseVariants
 
-  const { exit: _, ...mainTransition } = transition
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const { exit: _exit, ...mainTransition } = transition
 
   return {
     ...baseVariants,
