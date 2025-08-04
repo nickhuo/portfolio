@@ -1,4 +1,5 @@
 import createMDX from '@next/mdx';
+import remarkGfm from 'remark-gfm';
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
@@ -7,8 +8,8 @@ const nextConfig = {
   async rewrites() {
     return [
       {
-        source: '/cv',                                   // 访问 /cv
-        destination: '/JiajunHuo_SWE_UIUC_Resume.pdf',   // 实际文件
+        source: '/cv',                                   
+        destination: '/JiajunHuo_SWE_UIUC_Resume.pdf',   
       },
     ];
   },
@@ -16,6 +17,10 @@ const nextConfig = {
 
 const withMDX = createMDX({
   extension: /\.mdx?$/,
+  options: {
+    remarkPlugins: [remarkGfm],
+    rehypePlugins: [],
+  },
 });
 
 export default withMDX(nextConfig);
