@@ -15,6 +15,9 @@ export const metadata: Metadata = {
   title: 'Jiajun (Nick) Huo',
   description:
     'Jiajun (Nick) Huo is a software engineer, former PM, and data scientist who ships lovable products.',
+  icons: {
+    icon: 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg"/>',
+  },
 }
 
 const geist = Geist({
