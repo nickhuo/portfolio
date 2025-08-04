@@ -41,18 +41,18 @@ export const PROJECTS: Project[] = [
 
 export const BLOG_POSTS: BlogPost[] = [
   {
-    title: 'Exploring the Intersection of Design, AI, and Design Engineering',
-    description: 'How AI is changing the way we design',
-    link: '/writing/exploring-the-intersection-of-design-ai-and-design-engineering',
-    uid: 'writing-1',
-  },
-  {
     title: 'Behind the Build: My Tools & Workflow',
     description: '“A craftsman must first sharpen his tools before he can do his work well”',
     link: 'writing/behind-the-build-my-tools-workflow',
+    uid: 'writing-1',
+  },
+  {
+    title: 'The 59-Try Rule',
+    description: 'Why high-upside success is worth 59 shots?',
+    link: 'writing/the-59-try-rule',
     uid: 'writing-2',
   }
-  // 添加您的其他博客文章...
+  // add more blog posts...
   // {
   //   title: 'Your Blog Post Title',
   //   description: 'Blog post description...',

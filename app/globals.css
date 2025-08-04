@@ -18,4 +18,44 @@
   ::file-selector-button {
     border-color: var(--color-gray-200, currentColor);
   }
+
+  /* KaTeX display math (block-level) styling */
+  .prose .katex-display,
+  .katex-display {
+    text-align: center !important;
+    margin: 1.5rem auto !important;
+    display: block !important;
+    width: 100% !important;
+    overflow-x: auto !important;
+  }
+  
+  .prose .katex-display .katex,
+  .katex-display .katex {
+    text-align: center !important;
+    display: inline-block !important;
+    margin: 0 auto !important;
+  }
+  
+  /* Target standalone math formulas only */
+  .prose p > .katex:only-child {
+    display: block !important;
+    text-align: center !important;
+    margin: 1rem auto !important;
+    width: 100% !important;
+  }
+  
+  /* Reset text alignment for all other paragraphs */
+  .prose p {
+    text-align: left !important;
+  }
+  
+  /* Override only for paragraphs with standalone math */
+  .prose p:has(> .katex:only-child) {
+    text-align: center !important;
+  }
+  
+  /* Global KaTeX font size */
+  .katex {
+    font-size: 1.1em;
+  }
 }
