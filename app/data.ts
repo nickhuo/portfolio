@@ -22,8 +22,8 @@ export const PROJECTS: Project[] = [
   {
     name: 'Portfolio Website',
     description:
-      'A modern portfolio website built with Next.js and Motion.',
-    link: 'https://nichol.com',
+      'A gallery of something wonderful',
+    link: 'https://github.com/nickhuo/portfolio',
     video:
       '/placeholder-project-video.mp4', 
     id: 'project1',
