@@ -12,7 +12,7 @@ export const viewport: Viewport = {
 }
 
 export const metadata: Metadata = {
-  title: 'Jiajun (Nick) Huo',
+  title: 'Nick Huo',
   description:
     'Jiajun (Nick) Huo is a software engineer, former PM, and data scientist who ships lovable products.',
   icons: {
@@ -38,7 +38,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${geist.variable} ${geistMono.variable} bg-white tracking-tight antialiased dark:bg-zinc-950`}
+        className={`${geist.variable} ${geistMono.variable} bg-white tracking-tight antialiased dark:bg-[#111110]`}
       >
         <ThemeProvider
           enableSystem={true}
