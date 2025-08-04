@@ -6,15 +6,6 @@ type Project = {
   id: string
 }
 
-type WorkExperience = {
-  company: string
-  title: string
-  start: string
-  end: string
-  link: string
-  id: string
-}
-
 type BlogPost = {
   title: string
   description: string
