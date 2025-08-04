@@ -43,8 +43,8 @@ export const BLOG_POSTS: BlogPost[] = [
   {
     title: 'Exploring the Intersection of Design, AI, and Design Engineering',
     description: 'How AI is changing the way we design',
-    link: '/blog/exploring-the-intersection-of-design-ai-and-design-engineering',
-    uid: 'blog-1',
+    link: '/writing/exploring-the-intersection-of-design-ai-and-design-engineering',
+    uid: 'writing-1',
   },
   // 添加您的其他博客文章...
   // {
@@ -68,7 +68,11 @@ export const SOCIAL_LINKS: SocialLink[] = [
     label: 'Twitter',
     link: 'https://twitter.com/imnickhuo', // 请更新为您的Twitter链接
   },
+  {
+    label: 'Email',
+    link: 'mailto:jiajunhuo726@gmail.com', 
+  }
 
 ]
 
-export const EMAIL = 'jiajunhuo726@gmail.com' // 请更新为您的邮箱地址
+
