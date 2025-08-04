@@ -2,13 +2,16 @@ import createMDX from '@next/mdx';
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: 'export',  
   reactStrictMode: true,
   pageExtensions: ['js', 'jsx', 'ts', 'tsx', 'md', 'mdx'],
-  trailingSlash: true,  
-  images: {
-    unoptimized: true  
-  }
+  async rewrites() {
+    return [
+      {
+        source: '/cv',                                   // 访问 /cv
+        destination: '/JiajunHuo_SWE_UIUC_Resume.pdf',   // 实际文件
+      },
+    ];
+  },
 };
 
 const withMDX = createMDX({
