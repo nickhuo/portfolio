@@ -129,9 +129,13 @@ export default function Personal() {
         variants={VARIANTS_SECTION}
         transition={TRANSITION_SECTION}
       >
+        <h3 className="mb-2 text-lg font-medium">Dots Connected</h3>
+        {/* <p className="mb-4 text-sm text-zinc-500 dark:text-zinc-400 italic">
+          &quot;You can&apos;t connect the dots looking forward; you can only connect them looking backwards.&quot; — Steve Jobs
+        </p> */}
         <div className="flex-1">
           <p className="text-zinc-600 dark:text-zinc-400">
-          Nick went to college in Shenzhen, shaped by its tech-driven momentum. From sandbox math models tackling supply chain and finance challenges, to driving 0-to-1 growth at Sonic SVM and scaling monetization at Tencent and Baidu. Now at UIUC, I’m building agents, driven by deep product thinking and technical innovation.
+          Nick went to college in Shenzhen, shaped by its tech-driven momentum. From sandbox math models tackling supply chain and finance challenges, to driving 0-to-1 growth at Sonic SVM and scaling monetization at Tencent and Baidu. Now at UIUC, I&apos;m building agents, driven by deep product thinking and technical innovation.
           </p>
         </div>
       </motion.section>
