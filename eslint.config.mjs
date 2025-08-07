@@ -13,7 +13,7 @@ const eslintConfig = [
   ...compat.extends(
     "next/core-web-vitals",
     "next/typescript",
-    // 移除 "plugin:prettier/recommended",
+    // remove "plugin:prettier/recommended"
   ),
 ];
 
