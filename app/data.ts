@@ -18,6 +18,12 @@ type SocialLink = {
   link: string
 }
 
+// 分辨率： 1040×585 (16:9)
+// 格式： MP4 (H.264编码)
+// 码率： 2-4 Mbps (平衡质量和文件大小)
+// 时长： 建议5-15秒 (自动循环播放)
+// 音频： 无需音频 (页面设置为muted)
+
 export const PROJECTS: Project[] = [
   {
     name: 'Bitematch',
