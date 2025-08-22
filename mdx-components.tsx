@@ -19,20 +19,36 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
       alt: string
       caption: string
     }) => {
+      // Check if the file is a video
+      const isVideo = src.toLowerCase().endsWith('.mp4') || src.toLowerCase().endsWith('.webm')
       // Check if the image is a GIF to determine if it should be unoptimized
       const isGif = src.toLowerCase().endsWith('.gif')
       
       return (
         <figure>
-          <Image 
-            src={src} 
-            alt={alt} 
-            className="rounded-xl" 
-            width={800}
-            height={400}
-            style={{ width: '100%', height: 'auto' }}
-            unoptimized={isGif}
-          />
+          {isVideo ? (
+            <video 
+              autoPlay 
+              loop 
+              muted 
+              playsInline
+              className="rounded-xl w-full h-auto"
+              style={{ maxWidth: '800px' }}
+            >
+              <source src={src} type={`video/${src.split('.').pop()}`} />
+              Your browser does not support the video tag.
+            </video>
+          ) : (
+            <Image 
+              src={src} 
+              alt={alt} 
+              className="rounded-xl" 
+              width={800}
+              height={400}
+              style={{ width: '100%', height: 'auto' }}
+              unoptimized={isGif}
+            />
+          )}
           <figcaption className="text-center">{caption}</figcaption>
         </figure>
       )
