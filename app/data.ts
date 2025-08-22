@@ -20,12 +20,12 @@ type SocialLink = {
 
 export const PROJECTS: Project[] = [
   {
-    name: 'Portfolio Website',
+    name: 'Bitematch',
     description:
-      'A gallery of something wonderful',
-    link: 'https://github.com/nickhuo/portfolio',
+      'No more “What should I eat?” debates',
+    link: 'https://github.com/nickhuo/bitematch',
     video:
-      '/placeholder-project-video.mp4', 
+      '/project/bitematch.mp4', 
     id: 'project1',
   },
   // 添加更多项目...
@@ -33,7 +33,7 @@ export const PROJECTS: Project[] = [
   //   name: 'Your Project Name',
   //   description: 'Project description...',
   //   link: 'https://your-project-link.com',
-  //   video: '/path-to-your-project-video.mp4',
+  //   video: '/project/your-project-video.mp4',
   //   id: 'project2',
   // },
 ]
