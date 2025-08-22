@@ -1,0 +1,187 @@
+<Cover
+  src="/writing/the-fridge-to-fork-problem/bitematch-demo.gif"
+  alt="BiteMatch app interface demonstration showing recipe recommendation system with ingredient matching and meal planning features"
+  caption="BiteMatch: Solving the 'What should I eat?' dilemma"
+/>
+
+# The Fridge-to-Fork Problem: Engineering a Smarter Way to Cook
+
+**Building a recipe recommendation system that works with what you actually have**
+
+Finding the right recipe that fits your dietary preferences, calorie needs, and available ingredients can be challenging. Many existing platforms lack personalization, making it difficult for users to discover relevant recipes, track calories, and organize meal plans efficiently. BiteMatch aims to simplify this process by providing recipe recommendations, meal planning integration, calorie tracking, and grocery list management—all in one seamless experience.
+
+**Project Info**  
+**Launch Date:** April 28, 2025  
+**GitHub:** [nickhuo/bitematch](https://github.com/nickhuo/bitematch)  
+**Tech Stack:** FastAPI, GCP, MySQL, Node.js, Python, React, Tailwind CSS, Vite  
+**Team:** [Jiajun Huo](https://www.linkedin.com/in/nickhuo/), [Yiting Wang](https://www.linkedin.com/in/yiting-wang-870a3133b/), [Yiwen Zhang](https://www.linkedin.com/in/yiwenillinois/), [Zhihao Cheng](https://www.linkedin.com/in/zhihao-cheng/)
+
+---
+
+## The Academic Context
+
+This was the final project for **UIUC CS-411 Database Systems**, taught by [Prof. Abdussalam Alawini](https://siebelschool.illinois.edu/about/people/all-faculty/alawini). The course covered data models (ER, relational, hierarchical, network), query languages, normalization, query optimization, and distributed databases.
+
+### Technical Highlights
+
+**Intelligent Ingredient Matching**  
+Users can dynamically input available ingredients to find matching recipes. Our refined SQL design ensures only recipes containing *all* selected ingredients are returned, eliminating the frustration of missing key components.
+
+**API Optimization**  
+To handle YouTube API quota limits, the system checks our database first before fetching new videos, reducing API calls by over 50%. This smart caching approach significantly improved both performance and cost efficiency.
+
+**Advanced Calorie Calculation**  
+A stored procedure calculates total recipe calories by converting diverse units (cups, cans, tablespoons) to grams. This system covers approximately 90% of recipes accurately, providing users with reliable nutritional information.
+
+---
+
+## Problem Statement
+
+The modern kitchen presents a unique set of challenges:
+
+- **Decision Fatigue**: The daily question of "What should I eat?" creates unnecessary mental overhead
+- **Ingredient Waste**: Users often have ingredients that don't translate into cohesive meals
+- **Nutritional Blindness**: Most recipe platforms provide limited calorie and nutritional tracking
+- **Fragmented Experience**: Meal planning, grocery lists, and recipe discovery exist in separate silos
+
+BiteMatch addresses these pain points through intelligent recipe matching, comprehensive nutritional tracking, and integrated meal planning—creating a cohesive culinary experience.
+
+---
+
+## Competitive Analysis
+
+### NYT Cooking: The Content Giant
+
+[NYT Cooking](https://cooking.nytimes.com/) represents the gold standard in recipe content quality. With over 22,000 professionally curated recipes, it offers exceptional editorial oversight and a collaborative community through its "notes" feature.
+
+<Cover
+  src="/writing/the-fridge-to-fork-problem/nyt-cooking-screenshot.png"
+  alt="NYT Cooking interface showing professional recipe layout with high-quality food photography and user notes section"
+  caption="NYT Cooking: Premium content with editorial excellence"
+/>
+
+**Strengths**: Premium content quality, strong community engagement  
+**Limitations**: Limited personalization, no ingredient-based filtering
+
+### Crouton: The Collection Tool
+
+Crouton excels as a recipe management platform for Apple users, leveraging AI to import recipes from various sources—websites, cookbooks, even handwritten notes. Its strength lies in organization and meal planning integration.
+
+**Strengths**: Excellent import capabilities, seamless Apple ecosystem integration  
+**Limitations**: Platform-specific, requires manual recipe collection
+
+<Cover
+  src="/writing/the-fridge-to-fork-problem/meal-plan-preview.png"
+  alt="BiteMatch meal planning interface showing weekly calendar view with assigned recipes and nutritional tracking"
+  caption="Integrated meal planning with nutritional oversight"
+/>
+
+---
+
+## Our Unique Approach
+
+While NYT Cooking dominates content creation and Crouton excels at recipe organization, **BiteMatch takes a fundamentally different approach**. We focus on *discovery through constraint satisfaction*.
+
+### The Ingredient-First Philosophy
+
+Rather than browsing through thousands of recipes hoping to find something that matches your pantry, BiteMatch reverses the process:
+
+1. **Input what you have** - Select available ingredients from your kitchen
+2. **Get matched recipes** - Our algorithm finds recipes that use *only* your selected ingredients
+3. **Plan and track** - Seamlessly move from discovery to meal planning and nutritional tracking
+
+This constraint-based approach eliminates the common frustration of finding an appealing recipe only to discover you're missing half the ingredients.
+
+---
+
+## Technical Architecture
+
+### Database Design
+
+Our MySQL schema implements sophisticated relationship modeling:
+
+```sql
+-- Simplified schema showing key relationships
+RECIPES ⟷ RECIPE_INGREDIENTS ⟷ INGREDIENTS
+RECIPES ⟷ RECIPE_NUTRITION
+USERS ⟷ USER_MEAL_PLANS ⟷ RECIPES
+```
+
+The many-to-many relationship between recipes and ingredients enables precise filtering—ensuring returned recipes contain *only* user-specified ingredients.
+
+### API Integration Strategy
+
+**YouTube API Optimization**  
+- Database-first lookup reduces external API calls by 50%+
+- Intelligent caching prevents redundant video fetching
+- Graceful degradation when quota limits are reached
+
+**Nutritional Data Processing**  
+Our stored procedure handles unit conversion complexities:
+- Standardizes measurements to gram-based calculations
+- Accounts for ingredient density variations
+- Provides confidence scores for nutritional estimates
+
+---
+
+## Key Features
+
+### Smart Recipe Filtering
+Input available ingredients and receive recipes that use *only* those items—no more missing ingredient frustrations.
+
+### Comprehensive Meal Planning
+
+### Nutritional Transparency
+Every recipe includes detailed calorie and macronutrient breakdowns, calculated through our custom unit conversion system.
+
+### Video Integration
+Seamlessly embedded cooking videos from YouTube, with smart caching to optimize API usage and loading times.
+
+---
+
+## Lessons Learned
+
+### Database Design Insights
+
+Working with real-world recipe data revealed the complexity of food-related databases. Ingredient standardization, unit conversion, and nutritional calculation proved more challenging than initially anticipated. Our solution involved:
+
+- **Ingredient Normalization**: Standardizing ingredient names across different recipe sources
+- **Unit Conversion Logic**: Building robust conversion between volumetric and weight measurements
+- **Data Quality Assurance**: Implementing validation rules to catch inconsistent nutritional data
+
+### Performance Optimization
+
+With thousands of recipes and ingredients, query optimization became critical:
+
+- **Indexing Strategy**: Carefully designed indexes on recipe-ingredient relationships
+- **Caching Layer**: Database-first approach for external API integration
+- **Query Refinement**: Iterative improvement of ingredient-matching SQL logic
+
+---
+
+## Future Directions
+
+BiteMatch represents a foundation for more intelligent cooking assistance:
+
+### AI-Powered Recommendations
+Beyond ingredient matching, incorporating user preference learning and dietary restriction awareness.
+
+### Smart Grocery Integration
+Automated grocery list generation based on meal plans, with local store integration for price comparison.
+
+### Community Features
+Recipe sharing, user reviews, and cooking tip exchange to build a community around constraint-based cooking.
+
+---
+
+## Reflection
+
+Building BiteMatch reinforced the importance of **constraint-driven design**. Rather than trying to solve every cooking-related problem, we focused intensely on one specific pain point: ingredient-recipe matching. This focused approach allowed us to build a genuinely useful tool while maintaining technical depth.
+
+The project also highlighted how **academic constraints can drive innovation**. Working within the CS-411 curriculum pushed us to implement sophisticated database design patterns that might have been overlooked in a typical hackathon setting.
+
+Most importantly, BiteMatch demonstrated that meaningful software often emerges from deeply understanding a specific user frustration—in this case, the simple but persistent question: "What should I eat with what I have?"
+
+---
+
+*This project was completed as part of UIUC CS-411 Database Systems course. Special thanks to Prof. Abdussalam Alawini for guidance on advanced database design patterns and query optimization techniques.*

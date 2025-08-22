@@ -57,6 +57,12 @@ export const BLOG_POSTS: BlogPost[] = [
     description: 'Why high-upside success is worth 59 shots?',
     link: 'writing/the-59-try-rule',
     uid: 'writing-2',
+  },
+  {
+    title: 'The Fridge-to-Fork Problem',
+    description: 'Why and how we built an ingredient-first recipe recommendation system',
+    link: 'writing/the-fridge-to-fork-problem',
+    uid: 'writing-3',
   }
   // add more blog posts...
   // {
