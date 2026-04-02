@@ -6,6 +6,7 @@ import { Footer } from './footer'
 import { ThemeProvider } from 'next-themes'
 import { Analytics } from '@vercel/analytics/react'
 import { SpeedInsights } from '@vercel/speed-insights/next'
+import { WEBSITE_URL } from '@/lib/constants'
 
 export const viewport: Viewport = {
   width: 'device-width',
@@ -16,22 +17,43 @@ export const viewport: Viewport = {
   ]
 }
 
+const DESCRIPTION = 'Jiajun (Nick) Huo is a software engineer, former PM, and data scientist who ships lovable products.'
+
 export const metadata: Metadata = {
-  title: 'Nick Huo',
-  description:
-    'Jiajun (Nick) Huo is a software engineer, former PM, and data scientist who ships lovable products.',
+  metadataBase: new URL(WEBSITE_URL),
+  title: {
+    default: 'Nick Huo',
+    template: '%s | Nick Huo',
+  },
+  description: DESCRIPTION,
+  alternates: {
+    canonical: '/',
+  },
+  openGraph: {
+    type: 'website',
+    url: WEBSITE_URL,
+    siteName: 'Nick Huo',
+    title: 'Nick Huo',
+    description: DESCRIPTION,
+    locale: 'en_US',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    creator: '@imnickhuo',
+    title: 'Nick Huo',
+    description: DESCRIPTION,
+  },
   icons: {
     icon: 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg"/>',
   },
-  // 添加 Safari 特定的优化
   appleWebApp: {
     capable: true,
     statusBarStyle: 'default',
-    title: 'Nick Huo'
+    title: 'Nick Huo',
   },
   formatDetection: {
-    telephone: false
-  }
+    telephone: false,
+  },
 }
 
 const inter = Inter({
