@@ -1,9 +1,10 @@
 'use client'
 import { XIcon } from 'lucide-react'
-import { motion } from 'motion/react'
+import { motion, useReducedMotion } from 'motion/react'
 import Link from 'next/link'
 import { AnimatedBackground } from '@/components/ui/animated-background'
 import { Magnetic } from '@/components/ui/magnetic'
+import { Spotlight } from '@/components/ui/spotlight'
 import {
   MorphingDialog,
   MorphingDialogTrigger,
@@ -16,6 +17,7 @@ import {
   BLOG_POSTS,
   SOCIAL_LINKS,
 } from './data'
+import { playPop } from '@/lib/sounds'
 
 const VARIANTS_CONTAINER = {
   hidden: { opacity: 0 },
@@ -52,6 +54,7 @@ function ProjectVideo({ src }: { src: string }) {
           loop
           muted
           className="aspect-video w-full cursor-zoom-in rounded-xl"
+          onClick={() => playPop()}
         />
       </MorphingDialogTrigger>
       <MorphingDialogContainer>
@@ -118,18 +121,20 @@ function MagneticSocialLink({
 }
 
 export default function Personal() {
+  const prefersReducedMotion = useReducedMotion()
+
   return (
     <motion.main
       className="space-y-24"
       variants={VARIANTS_CONTAINER}
-      initial="hidden"
+      initial={prefersReducedMotion ? 'visible' : 'hidden'}
       animate="visible"
     >
       <motion.section
         variants={VARIANTS_SECTION}
         transition={TRANSITION_SECTION}
       >
-        <h3 className="mb-2 text-lg font-medium">Dots Connected</h3>
+        <h3 className="mb-2 text-lg font-medium tracking-tight">Dots Connected</h3>
         {/* <p className="mb-4 text-sm text-zinc-500 dark:text-zinc-400 italic">
           &quot;You can&apos;t connect the dots looking forward; you can only connect them looking backwards.&quot; — Steve Jobs
         </p> */}
@@ -144,11 +149,15 @@ export default function Personal() {
         variants={VARIANTS_SECTION}
         transition={TRANSITION_SECTION}
       >
-        <h3 className="mb-5 text-lg font-medium">Projects</h3>
+        <h3 className="mb-5 text-lg font-medium tracking-tight">Projects</h3>
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
           {PROJECTS.map((project) => (
             <div key={project.name} className="space-y-2">
-              <div className="relative rounded-2xl bg-zinc-50/40 p-1 ring-1 ring-zinc-200/50 ring-inset dark:bg-zinc-950/40 dark:ring-zinc-800/50">
+              <div className="relative overflow-hidden rounded-2xl bg-zinc-50/40 p-1 ring-1 ring-zinc-200/50 ring-inset dark:bg-zinc-950/40 dark:ring-zinc-800/50">
+                <Spotlight
+                  className="from-zinc-200/50 via-zinc-300/30 to-transparent dark:from-zinc-600/40 dark:via-zinc-700/20"
+                  size={300}
+                />
                 <ProjectVideo src={project.video} />
               </div>
               <div className="px-1">
@@ -173,7 +182,7 @@ export default function Personal() {
         variants={VARIANTS_SECTION}
         transition={TRANSITION_SECTION}
       >
-        <h3 className="mb-3 text-lg font-medium">Writing</h3>
+        <h3 className="mb-3 text-lg font-medium tracking-tight">Writing</h3>
         <div className="flex flex-col space-y-0">
           <AnimatedBackground
             enableHover
@@ -198,6 +207,9 @@ export default function Personal() {
                   <p className="text-zinc-500 dark:text-zinc-400">
                     {post.description}
                   </p>
+                  <span className="text-xs tabular-nums text-zinc-400 dark:text-zinc-500">
+                    {post.date}
+                  </span>
                 </div>
               </Link>
             ))}
@@ -209,7 +221,7 @@ export default function Personal() {
         variants={VARIANTS_SECTION}
         transition={TRANSITION_SECTION}
       >
-        <h3 className="mb-5 text-lg font-medium">Connect</h3>
+        <h3 className="mb-5 text-lg font-medium tracking-tight">Connect</h3>
         
         <div className="flex items-center justify-start space-x-3">
           {SOCIAL_LINKS.map((link) => (

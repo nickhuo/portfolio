@@ -58,4 +58,9 @@
   .katex {
     font-size: 1.1em;
   }
+
+  /* Tighter letter-spacing for headings (Inter looks better with negative tracking at larger sizes) */
+  h1, h2, h3 {
+    letter-spacing: -0.02em;
+  }
 }
