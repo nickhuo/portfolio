@@ -11,6 +11,7 @@ type BlogPost = {
   description: string
   link: string
   uid: string
+  date: string
 }
 
 type SocialLink = {
@@ -47,23 +48,33 @@ export const PROJECTS: Project[] = [
 
 export const BLOG_POSTS: BlogPost[] = [
   {
-    title: 'Behind the Build: My Tools & Workflow',
-    description: '“A craftsman must first sharpen his tools before he can do his work well”',
-    link: 'writing/behind-the-build-my-tools-workflow',
-    uid: 'writing-1',
+    title: 'The Fridge-to-Fork Problem',
+    description: 'Why and how we built an ingredient-first recipe recommendation system',
+    link: 'writing/the-fridge-to-fork-problem',
+    uid: 'writing-3',
+    date: 'Aug 22, 2025',
   },
   {
     title: 'The 59-Try Rule',
     description: 'Why high-upside success is worth 59 shots?',
     link: 'writing/the-59-try-rule',
     uid: 'writing-2',
+    date: 'Aug 4, 2025',
   },
   {
-    title: 'The Fridge-to-Fork Problem',
-    description: 'Why and how we built an ingredient-first recipe recommendation system',
-    link: 'writing/the-fridge-to-fork-problem',
-    uid: 'writing-3',
-  }
+    title: 'Behind the Build: My Tools & Workflow',
+    description: '”A craftsman must first sharpen his tools before he can do his work well”',
+    link: 'writing/behind-the-build-my-tools-workflow',
+    uid: 'writing-1',
+    date: 'Aug 4, 2025',
+  },
+  {
+    title: 'Exploring the Intersection of Design, AI, and Design Engineering',
+    description: 'How AI is reshaping the boundaries between design and engineering',
+    link: 'writing/exploring-the-intersection-of-design-ai-and-design-engineering',
+    uid: 'writing-4',
+    date: 'Aug 4, 2025',
+  },
   // add more blog posts...
   // {
   //   title: 'Your Blog Post Title',

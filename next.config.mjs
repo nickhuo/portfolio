@@ -7,6 +7,14 @@ import rehypeKatex from 'rehype-katex'
 const nextConfig = {
   reactStrictMode: true,
   pageExtensions: ['js', 'jsx', 'ts', 'tsx', 'md', 'mdx'],
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'cdn.cosmos.so',
+      },
+    ],
+  },
   async rewrites() {
     return [
       {
