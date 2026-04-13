@@ -75,7 +75,7 @@ export function Footer() {
         <a href="https://github.com/nickhuo" target="_blank">
           <TextLoop className="text-xs text-zinc-500">
             <span>© 2026 Nick Huo.</span>
-            <span>Built with Next.js & Motion.</span>
+            <span>Built with Next.js, Motion and Love.</span>
           </TextLoop>
         </a>
         <div className="text-xs text-zinc-400">
