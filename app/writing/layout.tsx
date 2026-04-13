@@ -1,5 +1,8 @@
 'use client'
 import { motion, useReducedMotion } from 'motion/react'
+import { usePathname } from 'next/navigation'
+import { useEffect } from 'react'
+import posthog from 'posthog-js'
 import { ScrollProgress } from '@/components/ui/scroll-progress'
 
 export default function LayoutBlogPost({
@@ -8,6 +11,11 @@ export default function LayoutBlogPost({
   children: React.ReactNode
 }) {
   const prefersReducedMotion = useReducedMotion()
+  const pathname = usePathname()
+
+  useEffect(() => {
+    posthog.capture('writing_post_viewed', { path: pathname })
+  }, [pathname])
 
   return (
     <>
