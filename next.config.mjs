@@ -18,7 +18,7 @@ const nextConfig = {
   async rewrites() {
     return [
       {
-        source: '/cv',
+        source: '/resume',
         destination: '/Jiajun_UIUC.pdf',
       },
     ]
