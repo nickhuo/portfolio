@@ -4,6 +4,7 @@ import { TextLoop } from '@/components/ui/text-loop'
 import { MonitorIcon, MoonIcon, SunIcon } from 'lucide-react'
 import { useTheme } from 'next-themes'
 import { useEffect, useState } from 'react'
+import posthog from 'posthog-js'
 
 const THEMES_OPTIONS = [
   {
@@ -47,6 +48,7 @@ function ThemeSwitch() {
       enableHover={false}
       onValueChange={(id) => {
         setTheme(id as string)
+        posthog.capture('theme_changed', { theme: id })
       }}
     >
       {THEMES_OPTIONS.map((theme) => {

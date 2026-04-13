@@ -2,6 +2,7 @@
 import { XIcon } from 'lucide-react'
 import { motion, useReducedMotion } from 'motion/react'
 import Link from 'next/link'
+import posthog from 'posthog-js'
 import { AnimatedBackground } from '@/components/ui/animated-background'
 import { Magnetic } from '@/components/ui/magnetic'
 import { Spotlight } from '@/components/ui/spotlight'
@@ -12,11 +13,7 @@ import {
   MorphingDialogClose,
   MorphingDialogContainer,
 } from '@/components/ui/morphing-dialog'
-import {
-  PROJECTS,
-  BLOG_POSTS,
-  SOCIAL_LINKS,
-} from './data'
+import { PROJECTS, BLOG_POSTS, SOCIAL_LINKS } from './data'
 import { WEBSITE_URL } from '@/lib/constants'
 
 const VARIANTS_CONTAINER = {
@@ -51,7 +48,7 @@ const PERSON_SCHEMA = {
   ],
 }
 
-function ProjectVideo({ src }: { src: string }) {
+function ProjectVideo({ src, name }: { src: string; name: string }) {
   return (
     <MorphingDialog
       transition={{
@@ -60,15 +57,21 @@ function ProjectVideo({ src }: { src: string }) {
         duration: 0.3,
       }}
     >
-      <MorphingDialogTrigger>
-        <video
-          src={src}
-          autoPlay
-          loop
-          muted
-          className="aspect-video w-full cursor-zoom-in rounded-xl"
-        />
-      </MorphingDialogTrigger>
+      <div
+        onClick={() =>
+          posthog.capture('project_video_expanded', { project_name: name })
+        }
+      >
+        <MorphingDialogTrigger>
+          <video
+            src={src}
+            autoPlay
+            loop
+            muted
+            className="aspect-video w-full cursor-zoom-in rounded-xl"
+          />
+        </MorphingDialogTrigger>
+      </div>
       <MorphingDialogContainer>
         <MorphingDialogContent className="relative aspect-video rounded-2xl bg-zinc-50 p-1 ring-1 ring-zinc-200/50 ring-inset dark:bg-zinc-950 dark:ring-zinc-800/50">
           <video
@@ -100,15 +103,20 @@ function ProjectVideo({ src }: { src: string }) {
 function MagneticSocialLink({
   children,
   link,
+  label,
 }: {
   children: React.ReactNode
   link: string
+  label: string
 }) {
   return (
     <Magnetic springOptions={{ bounce: 0 }} intensity={0.3}>
       <a
         href={link}
         rel="noopener noreferrer"
+        onClick={() =>
+          posthog.capture('social_link_clicked', { label, url: link })
+        }
         className="group relative inline-flex shrink-0 items-center gap-[1px] rounded-full bg-zinc-100 px-2.5 py-1 text-sm text-black transition-colors duration-200 hover:bg-zinc-950 hover:text-zinc-50 dark:bg-zinc-800 dark:text-zinc-100 dark:hover:bg-zinc-700"
       >
         {children}
@@ -142,7 +150,9 @@ export default function Personal() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(PERSON_SCHEMA) }}
       />
-      <h1 className="sr-only">Jiajun (Nick) Huo — Software Engineer & Builder</h1>
+      <h1 className="sr-only">
+        Jiajun (Nick) Huo — Software Engineer & Builder
+      </h1>
       <motion.main
         className="space-y-24"
         variants={VARIANTS_CONTAINER}
@@ -153,10 +163,17 @@ export default function Personal() {
           variants={VARIANTS_SECTION}
           transition={TRANSITION_SECTION}
         >
-          <h2 className="mb-2 text-lg font-medium tracking-tight">Dots Connected</h2>
+          <h2 className="mb-2 text-lg font-medium tracking-tight">
+            Dots Connected
+          </h2>
           <div className="flex-1">
             <p className="text-zinc-600 dark:text-zinc-400">
-            Nick went to college in Shenzhen, shaped by its tech-driven momentum. From sandbox math models tackling supply chain and finance challenges, to driving 0-to-1 growth at Sonic SVM and scaling monetization at Tencent and Baidu. Now at UIUC, I&apos;m building agents, driven by deep product thinking and technical innovation.
+              Nick went to college in Shenzhen, shaped by its tech-driven
+              momentum. From sandbox math models tackling supply chain and
+              finance challenges, to driving 0-to-1 growth at Sonic SVM and
+              scaling monetization at Tencent and Baidu. Now at UIUC, I&apos;m
+              building agents, driven by deep product thinking and technical
+              innovation.
             </p>
           </div>
         </motion.section>
@@ -174,7 +191,7 @@ export default function Personal() {
                     className="from-zinc-200/50 via-zinc-300/30 to-transparent dark:from-zinc-600/40 dark:via-zinc-700/20"
                     size={300}
                   />
-                  <ProjectVideo src={project.video} />
+                  <ProjectVideo src={project.video} name={project.name} />
                 </div>
                 <div className="px-1">
                   <a
@@ -182,6 +199,12 @@ export default function Personal() {
                     href={project.link}
                     target="_blank"
                     rel="noopener noreferrer"
+                    onClick={() =>
+                      posthog.capture('project_link_clicked', {
+                        project_name: project.name,
+                        url: project.link,
+                      })
+                    }
                   >
                     {project.name}
                     <span className="absolute bottom-0.5 left-0 block h-[1px] w-full max-w-0 bg-zinc-900 transition-all duration-200 group-hover:max-w-full"></span>
@@ -216,6 +239,13 @@ export default function Personal() {
                   className="-mx-3 rounded-xl px-3 py-3"
                   href={post.link}
                   data-id={post.uid}
+                  onClick={() =>
+                    posthog.capture('blog_post_clicked', {
+                      title: post.title,
+                      uid: post.uid,
+                      url: post.link,
+                    })
+                  }
                 >
                   <div className="flex flex-col space-y-1">
                     <h3 className="font-normal dark:text-zinc-100">
@@ -224,7 +254,7 @@ export default function Personal() {
                     <p className="text-zinc-500 dark:text-zinc-400">
                       {post.description}
                     </p>
-                    <span className="text-xs tabular-nums text-zinc-400 dark:text-zinc-500">
+                    <span className="text-xs text-zinc-400 tabular-nums dark:text-zinc-500">
                       {post.date}
                     </span>
                   </div>
@@ -242,7 +272,11 @@ export default function Personal() {
 
           <div className="flex items-center justify-start space-x-3">
             {SOCIAL_LINKS.map((link) => (
-              <MagneticSocialLink key={link.label} link={link.link}>
+              <MagneticSocialLink
+                key={link.label}
+                link={link.link}
+                label={link.label}
+              >
                 {link.label}
               </MagneticSocialLink>
             ))}

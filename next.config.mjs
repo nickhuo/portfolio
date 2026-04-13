@@ -21,8 +21,17 @@ const nextConfig = {
         source: '/resume',
         destination: '/Jiajun_UIUC.pdf',
       },
+      {
+        source: '/ingest/static/:path*',
+        destination: 'https://us-assets.i.posthog.com/static/:path*',
+      },
+      {
+        source: '/ingest/:path*',
+        destination: 'https://us.i.posthog.com/:path*',
+      },
     ]
   },
+  skipTrailingSlashRedirect: true,
 }
 
 const withMDX = createMDX({
