@@ -13,6 +13,7 @@ import {
   MorphingDialogClose,
   MorphingDialogContainer,
 } from '@/components/ui/morphing-dialog'
+import Balancer from 'react-wrap-balancer'
 import { PROJECTS, BLOG_POSTS, SOCIAL_LINKS } from './data'
 import { WEBSITE_URL } from '@/lib/constants'
 
@@ -249,10 +250,10 @@ export default function Personal() {
                 >
                   <div className="flex flex-col space-y-1">
                     <h3 className="font-normal dark:text-zinc-100">
-                      {post.title}
+                      <Balancer>{post.title}</Balancer>
                     </h3>
                     <p className="text-zinc-500 dark:text-zinc-400">
-                      {post.description}
+                      <Balancer>{post.description}</Balancer>
                     </p>
                     <span className="text-xs text-zinc-400 tabular-nums dark:text-zinc-500">
                       {post.date}
