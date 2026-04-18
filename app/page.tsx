@@ -169,12 +169,17 @@ export default function Personal() {
           </h2>
           <div className="flex-1">
             <p className="text-zinc-600 dark:text-zinc-400">
-              Nick went to college in Shenzhen, shaped by its tech-driven
-              momentum. From sandbox math models tackling supply chain and
-              finance challenges, to driving 0-to-1 growth at Sonic SVM and
-              scaling monetization at Tencent and Baidu. Now at UIUC, I&apos;m
-              building agents, driven by deep product thinking and technical
-              innovation.
+              I&apos;m studying at UIUC and working on AI agents and data
+              systems, trying to make software that feels calm, useful and a
+              little smarter than it looks. Right now I am doing research at
+              the Beckman Institute on multi-agent systems for personalized
+              learning and helping build an AI copilot for aircraft.
+              Before this I worked on data infra at Sonic SVM on Solana, and 
+              earlier on ads and growth at Tencent and
+              Baidu. I like problems where have to talk to users,
+              understand constraints and iterate, and I believe good products
+              come from a long series of small, correct decisions rather than
+              big genius ideas.
             </p>
           </div>
         </motion.section>
