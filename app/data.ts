@@ -68,13 +68,6 @@ export const BLOG_POSTS: BlogPost[] = [
     uid: 'writing-1',
     date: 'Aug 4, 2025',
   },
-  {
-    title: 'Exploring the Intersection of Design, AI, and Design Engineering',
-    description: 'How AI is reshaping the boundaries between design and engineering',
-    link: 'writing/exploring-the-intersection-of-design-ai-and-design-engineering',
-    uid: 'writing-4',
-    date: 'Aug 4, 2025',
-  },
   // add more blog posts...
   // {
   //   title: 'Your Blog Post Title',
