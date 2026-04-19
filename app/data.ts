@@ -26,15 +26,6 @@ type SocialLink = {
 // 音频： 无需音频 (页面设置为muted)
 
 export const PROJECTS: Project[] = [
-  {
-    name: 'Bitematch',
-    description:
-      'No more “What should I eat?” debates',
-    link: 'https://github.com/nickhuo/bitematch',
-    video:
-      '/project/bitematch.mp4', 
-    id: 'project1',
-  },
   // 添加更多项目...
   // {
   //   name: 'Your Project Name',

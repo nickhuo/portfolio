@@ -14,7 +14,7 @@ Nick went to college in Shenzhen, shaped by its tech-driven momentum. From sandb
 
 ${PROJECTS.map((p) => `- [${p.name}](${p.link}): ${p.description}`).join('\n')}
 
-## Writing
+## Thoughts
 
 ${BLOG_POSTS.map((p) => `- [${p.title}](${WEBSITE_URL}/${p.link}): ${p.description} (${p.date})`).join('\n')}
 
