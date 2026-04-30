@@ -5,7 +5,6 @@ import './globals.css'
 import { Header } from './header'
 import { Footer } from './footer'
 import { ThemeProvider } from 'next-themes'
-import { Provider as BalancerProvider } from 'react-wrap-balancer'
 import { Analytics } from '@vercel/analytics/react'
 import { SpeedInsights } from '@vercel/speed-insights/next'
 import { WEBSITE_URL } from '@/lib/constants'
@@ -90,8 +89,7 @@ export default function RootLayout({
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
         <meta name="apple-touch-fullscreen" content="yes" />
         
-        {/* 防止Safari缩放 */}
-        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
         
         {/* 动态主题颜色 */}
         <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
@@ -106,7 +104,6 @@ export default function RootLayout({
           storageKey="theme"
           defaultTheme="system"
         >
-          <BalancerProvider>
           <div className="flex min-h-screen w-full flex-col font-[family-name:var(--font-inter)]">
             <div className="relative mx-auto w-full max-w-screen-sm flex-1 px-6 pt-12">
               <Header />
@@ -114,7 +111,6 @@ export default function RootLayout({
               <Footer />
             </div>
           </div>
-          </BalancerProvider>
         </ThemeProvider>
         <Analytics />
         <SpeedInsights />

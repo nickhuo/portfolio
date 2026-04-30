@@ -1,6 +1,5 @@
 import type { MDXComponents } from 'mdx/types'
 import Image from 'next/image'
-import Balancer from 'react-wrap-balancer'
 import type {
   TableHTMLAttributes,
   HTMLAttributes,
@@ -11,9 +10,9 @@ import type {
 export function useMDXComponents(components: MDXComponents): MDXComponents {
   return {
     ...components,
-    h1: ({ children }) => <h1><Balancer>{children}</Balancer></h1>,
-    h2: ({ children }) => <h2><Balancer>{children}</Balancer></h2>,
-    h3: ({ children }) => <h3><Balancer>{children}</Balancer></h3>,
+    h1: ({ children }) => <h1>{children}</h1>,
+    h2: ({ children }) => <h2>{children}</h2>,
+    h3: ({ children }) => <h3>{children}</h3>,
     Cover: ({
       src,
       alt,
