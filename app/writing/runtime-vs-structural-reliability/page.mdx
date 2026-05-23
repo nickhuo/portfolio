@@ -1,0 +1,78 @@
+export const metadata = {
+  title: "Your Agent's Bug Is Structural, Not Runtime",
+  description: 'Most teams add another judge when they should change the structure. Two layers of agent reliability, and why we invest in the wrong one.',
+  alternates: { canonical: '/writing/runtime-vs-structural-reliability' },
+  openGraph: {
+    type: 'article',
+    publishedTime: '2026-05-22',
+    authors: ['Jiajun (Nick) Huo'],
+  },
+}
+
+<script type="application/ld+json">{`{"@context":"https://schema.org","@type":"BlogPosting","headline":"Your Agent's Bug Is Structural, Not Runtime","description":"Most teams add another judge when they should change the structure. Two layers of agent reliability, and why we invest in the wrong one.","datePublished":"2026-05-22","url":"https://nickhuo.com/writing/runtime-vs-structural-reliability","author":{"@type":"Person","name":"Jiajun (Nick) Huo","url":"https://nickhuo.com"}}`}</script>
+
+# Your Agent's Bug Is Structural, Not Runtime
+
+**TL;DR:** Agent reliability has two layers. The *runtime* layer catches failures after they start — retries, judges, validators. The *structural* layer prevents them by construction — sandboxing, permission models, harness and tool design. Most teams over-invest in runtime because it ships in a single pull request. But most real failures are structural in origin, and no number of judges will catch them.
+
+When an agent does something it shouldn't, the reflex is almost universal: add a check. A judge to grade the output, a classifier to catch the bad action, a validator on the response. It feels like progress, it's one PR, and you can point to it in the postmortem. I've shipped plenty of these. They have their place.
+
+But I've come to think the reflex hides the more important question. Most of the failures that actually hurt in production aren't things a check would have caught. They're things the *structure* allowed to happen in the first place.
+
+## Two layers
+
+It's worth naming the two layers precisely, because they get conflated constantly.
+
+The **runtime layer** acts while the agent runs. Retries, LLM-as-judge evaluation, permission classifiers, output validators, trace retention. Its defining property: it catches failure *after it begins*. The agent does the thing, and the runtime layer notices and intervenes.
+
+The **structural layer** is the shape of the system itself. Sandboxing, the permission model, path-scoped tools and skills, the harness design, the tool interface, how much context the agent carries. Its defining property: it prevents failure *by construction*. The agent can't do the thing, because the structure never gave it the path.
+
+Both matter. The claim I want to defend is narrower and more useful than "structure good, runtime bad":
+
+> **Most production agent failures are structural in origin — and the industry systematically over-invests in runtime because runtime is easier to ship.**
+
+A judge prompt is one PR. A permission model is a redesign. So the incentives push every team toward the cheaper layer, regardless of where the failures actually live.
+
+## The postmortem that made the case
+
+The evidence that moved me most is Anthropic's May 2026 [postmortem on three production incidents](https://www.anthropic.com/engineering/a-postmortem-of-three-recent-issues). What's striking is the diagnosis: all three traced to **structural causes** — context-window edge cases, permission boundaries, harness configuration. Not model capability. Not insufficient runtime checking.
+
+Read that carefully, because it's the crux: **adding more judges would not have caught any of the three.** The model wasn't producing outputs a grader would flag. The system's *shape* let the failure through — a boundary that was drawn in the wrong place, a configuration that went stale, an edge case the harness didn't handle. A runtime check sits downstream of all of those. It can only inspect what the structure already permitted.
+
+When three out of three serious incidents are structural, "add another judge" isn't a reliability strategy. It's a way to feel busy.
+
+## Harness > model
+
+The same body of work makes a claim I'd have found provocative a year ago and now find obvious: [**the harness determines performance more than the model does.**](https://claude.com/blog/how-claude-code-works-in-large-codebases-best-practices-and-where-to-start) The extension points that make an agent good in a real codebase — instructions, hooks, scoped skills, plugins, tool protocols, language-server integration, subagents — are *all structural.* None of them are runtime checks. You make an agent reliable by shaping the environment it operates in, not by grading it harder after the fact.
+
+[Sandboxing](https://www.anthropic.com/engineering/claude-code-sandboxing) is the cleanest example. Safety as a *structural* property of the execution environment is categorically different from a runtime filter scanning for bad actions. A permission classifier catches what the structure failed to prevent — necessary as a backstop, but you've already lost the leverage if it's your primary defense. A sandbox doesn't grade the action. It makes the dangerous action impossible.
+
+Path-scoping is the move I reach for most. Binding a deployment skill to `services/payments/` instead of the whole repository doesn't *detect* misuse — it *prevents* the agent from touching what it has no business touching. Pure structure. The failure mode is gone, not monitored.
+
+## Structure goes stale; that's the catch
+
+The honest downside of structural reliability is that it accrues debt silently. A compensation you built for a model's old limitation becomes dead weight after the limitation goes away — the classic example is tooling hooks that made sense before a capability shipped natively and then just sat there adding friction.
+
+Runtime checks don't rot the same way; a judge that runs is a judge that runs. So structural reliability needs a *maintenance discipline*: revisit the configuration every few months, especially after a model release, and delete the scaffolding you no longer need. This is the part teams forget, and it's why "set up the structure once" isn't the whole story. Structure is a garden, not a wall.
+
+## Where runtime genuinely wins
+
+I want to steelman the other side, because a flat "structure beats runtime" would be wrong.
+
+**Prompt injection** is the real counterexample. When the attack arrives inside the data the agent is supposed to process, structural boundaries can't anticipate every surface. Input scanning, output filtering, classifier-based intervention at runtime — that's a legitimate last line of defense, and pretending structure alone solves it is wishful. Structural moves *reduce* the attack surface; they don't eliminate it. Here runtime earns its keep.
+
+There's also the bet that cheap-enough inference makes per-step judging approach structural reliability. Maybe, eventually. I'm skeptical the cost trajectory clears the bar soon, and I'd rather not architect around it. But it's a real position, not a strawman.
+
+So the framing isn't "never use runtime checks." It's an **allocation heuristic**: ask the structural question *first*, then add runtime as defense-in-depth on top.
+
+## The test I actually use
+
+For any reliability incident, I ask one question:
+
+> Would adding one more runtime check have *prevented* this — or only *detected* it sooner?
+
+If the answer is "detected sooner," the real fix is structural, and the judge you're about to write is a symptom-masker. Ship it if you want the early warning, but don't mistake it for the fix.
+
+This generalizes a point I made in [a previous essay](/writing/workflows-beat-agents): a workflow is reliable partly because it *structurally* removes failure modes an agent would have to be caught making. Runtime-vs-structural is the same principle, one level up. The most reliable systems I've worked on — citation and retrieval pipelines, eval infrastructure, the runtime layer of agent products — got their reliability from corpus curation, retrieval architecture, sandboxing, and permission design. The judges were the last 10%, not the first 90%.
+
+When the next failure shows up, resist the reflex. Don't ask what judge catches this. Ask what structure prevents it.

@@ -1,0 +1,91 @@
+export const metadata = {
+  title: "Most Production Features Don't Need an Agent",
+  description: 'Why workflows still beat agents for most production LLM features — and the cost test that tells you which to reach for.',
+  alternates: { canonical: '/writing/workflows-beat-agents' },
+  openGraph: {
+    type: 'article',
+    publishedTime: '2026-05-21',
+    authors: ['Jiajun (Nick) Huo'],
+  },
+}
+
+<script type="application/ld+json">{`{"@context":"https://schema.org","@type":"BlogPosting","headline":"Most Production Features Don't Need an Agent","description":"Why workflows still beat agents for most production LLM features — and the cost test that tells you which to reach for.","datePublished":"2026-05-21","url":"https://nickhuo.com/writing/workflows-beat-agents","author":{"@type":"Person","name":"Jiajun (Nick) Huo","url":"https://nickhuo.com"}}`}</script>
+
+# Most Production Features Don't Need an Agent
+
+**TL;DR:** For most production LLM features, an explicit workflow beats an autonomous agent. Agents trade predictability, latency, and cost for flexibility you usually don't need. Before you reach for one, run a simple test: can you articulate why this task is worth 4× the tokens of a single model call? If not, build the workflow.
+
+"Agent" has become the default noun. Every feature gets pitched as one, every framework promises them, every demo loops a model calling tools until something good happens. The demos are genuinely impressive. The trouble is that the gap between a demo and a feature people depend on is exactly the place where "let the model figure it out" stops being a virtue.
+
+I've come around to a fairly boring position, and the more production systems I see the more boring it gets: **for the majority of production features, workflows beat agents.** Not because agents don't work — because most tasks don't need what an agent costs.
+
+## Workflow vs. agent, concretely
+
+It helps to be precise about the words, because the marketing has blurred them.
+
+A **workflow** is a system where you, the engineer, wire the control flow. Prompt chaining, routing a request to the right handler, running steps in parallel, an evaluator that loops a generator until it passes a check — the LLM does cognitive work *inside* a structure you defined. The path is legible. You can point at where it will go.
+
+An **agent** hands that control flow to the model. It decides which tools to call, in what order, when it's done. This is the right move when the path genuinely can't be known in advance. It's also where predictability, latency, debuggability, and cost all get worse at once.
+
+Anthropic's [*Building Effective Agents*](https://www.anthropic.com/engineering/building-effective-agents) (December 2024) made this the explicit recommendation — find the simplest thing that works, and that simplest thing is usually a workflow, not an agentic loop wrapped in a framework. A year and a half of production reality later, the advice has aged well.
+
+## The cost test is the whole argument
+
+The cleanest decision tool I've found comes straight out of Anthropic's writeup on [how they built their multi-agent research system](https://www.anthropic.com/engineering/multi-agent-research-system) (June 2025). Two numbers:
+
+- A single autonomous agent burns roughly **4× the tokens** of a normal chat call.
+- A multi-agent system burns roughly **15×**.
+
+And the kicker, from the same analysis: token usage alone explained about **80% of the performance variance** on their research benchmark. Tool-call count and model choice covered most of the rest.
+
+Sit with that. It means multi-agent systems don't win by being *smarter*. They win by being a **parallelism harness** — they spend more tokens in parallel than a single agent could deploy serially. The intelligence isn't in the architecture; it's in the token budget the architecture lets you spend.
+
+Which gives you a test you can apply before writing a line of code:
+
+> If you can't articulate why your task is worth 4× — let alone 15× — the cost of a single chat call, you should be using a workflow.
+
+Most production tasks can't clear that bar. Summarize this document, classify this ticket, extract these fields, draft this reply: a chain or a router does the job at 1–2× with a path you can actually reason about. Reaching for an agent there isn't ambitious, it's just expensive.
+
+## Reliability, measured
+
+The cost argument would be enough on its own. But there's a reliability argument underneath it, and it's been measured rather than asserted — which is rare in this field.
+
+Sierra's [**τ-bench**](https://arxiv.org/abs/2406.12045) (Yao et al., 2024) put function-calling agents in realistic customer-service tasks. State-of-the-art models solved fewer than half. More damning was the consistency: on the retail domain, GPT-4o's single-attempt success was around 61%, but `pass^8` — the probability of getting it right *eight times in a row* on the same task — dropped below **25%**.
+
+That `pass^k` collapse is the number that should keep you up at night, because production isn't one attempt. It's the same task, a thousand times a day, and you're promising it works each time. An architecture that's coherent once but flaky eight-in-a-row is a demo, not a feature.
+
+And look at *how* the agents failed: a big share were rule-following violations and partial resolutions of multi-part requests. Both of those failure modes are **eliminated by construction in a workflow.** If a step must happen, you make it a node in the chain instead of hoping the model remembers the policy. The structure does the remembering.
+
+## When the agent actually earns its keep
+
+I'm not arguing agents never belong in production. I'm arguing they belong in a narrow, nameable set of cases. Anthropic's carve-out is the sharpest I've seen — multi-agent wins when **all three** of these hold:
+
+1. The work is genuinely **parallelizable** (independent subtasks you can fan out).
+2. The information **exceeds a single context window**, so you need separate agents holding separate slices.
+3. The task value is **high enough to clear the ~15× cost**.
+
+Open-ended research is the canonical fit: many independent threads, more material than one context can hold, and answers worth real money. Outside that triple conjunction, the workflow stays the default.
+
+The carve-out that surprised people is **coding** — Anthropic has said single-agent coding beats multi-agent coding *today*, because coding tasks don't parallelize cleanly and current models don't delegate well in real time. That matters, because coding is where a huge share of LLM engineering effort is going. The honest read is that production coding agents are oversold right now; the realistic 2026 stack is workflow-shaped tools with sharp primitives and a well-designed tool interface, not a swarm of autonomous coders.
+
+## The line is blurrier than "agent or workflow"
+
+I used to hold the workflow-default position flatly. One paper sharpened it for me: [**Recursive Language Models**](https://alexzhang13.github.io/blog/2025/rlm/) (Zhang & Khattab, 2025). RLM lets a model decide how to decompose a long-context problem — recursively, inside a Python REPL with a bounded set of actions — and it beats flat frontier-model calls on long-context benchmarks, sometimes by a lot.
+
+That looks like a point *for* agents. It's agent-shaped: the model drives the decomposition. But notice the substrate. The REPL is a tightly constrained environment with a bounded action space. It's structurally a *workflow scaffold* hosting an agentic step. The win comes from the constraint, not from turning the model loose.
+
+So the sharper version of my position isn't "agent or workflow." It's:
+
+> **Is the agent's action space constrained tightly enough to give workflow-grade predictability?** If yes, ship it like a workflow. If no, default to an explicit workflow.
+
+"Agents work when the substrate is workflow-shaped" is the rule I actually operate by now. It dissolves the binary without giving up the discipline.
+
+## What I do in practice
+
+When a new feature lands on my desk, the question isn't "how do we make this agentic?" It's:
+
+1. **Can I draw the control flow?** If I can sketch the path, I build it — chain, router, evaluator loop. Done.
+2. **If I can't, why not?** Usually the answer is "the path depends on the data." Then I ask whether I can *constrain the action space* so the model's freedom is bounded — tools that can't do damage, a fixed set of moves, a structured scratchpad.
+3. **Only if the task is genuinely open-ended and clears the cost bar** do I hand over real control. And then I treat the token multiplier as the budget it is.
+
+None of this is a knock on agents. It's a knock on reaching for the most expensive, least predictable architecture by default — for the aesthetic of it. The systems people actually rely on tend to be made of small, legible pieces with the cleverness pushed to the edges where it's bounded. Route by cost-clearance, not by how impressive the word "agent" sounds in the design doc.

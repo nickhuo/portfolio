@@ -107,17 +107,19 @@ export default function Personal() {
           </h2>
           <div className="flex-1">
             <p className="text-zinc-600 dark:text-zinc-400">
-              I&apos;m studying at UIUC and working on AI agents and data
-              systems, trying to make software that feels calm, useful and a
-              little smarter than it looks. Right now I am doing research at
-              the Beckman Institute on multi-agent systems for personalized
-              learning and helping build an AI copilot for aircraft.
-              Before this I worked on data infra at Sonic SVM on Solana, and 
-              earlier on ads and growth at Tencent and
-              Baidu. I like problems where have to talk to users,
-              understand constraints and iterate, and I believe good products
-              come from a long series of small, correct decisions rather than
-              big genius ideas.
+              I build software that learns from how people actually use it. The interesting part was never the model or the infra on its own — it&apos;s the loop between what people need and a system reliable enough to benefit them. Right now I&apos;m researching multi-agent for personalized learning at the Beckman Institute, and helping build an AI copilot for aircraft. Before this, I built data infrastructure at Sonic SVM on Solana, and worked on growth and ads at Tencent and Baidu. Looking back,{' '}
+              <a
+                href="https://www.linkedin.com/in/nickhuo/details/experience/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="underline decoration-zinc-300 underline-offset-2 transition-colors hover:text-zinc-900 dark:decoration-zinc-600 dark:hover:text-zinc-100"
+              >
+                the dots connect
+              </a>
+              : each role taught me a different part of that loop — what people need, how to capture the signal, how to make the system hold in production.
+            </p>
+            <p className="mt-4 text-zinc-600 dark:text-zinc-400">
+              I believe a great tool is a bicycle for the mind that amplifies human intelligence.
             </p>
           </div>
         </motion.section>

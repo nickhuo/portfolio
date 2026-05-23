@@ -39,6 +39,20 @@ export const PROJECTS: Project[] = [
 
 export const BLOG_POSTS: BlogPost[] = [
   {
+    title: "Your Agent's Bug Is Structural, Not Runtime",
+    description: 'Two layers of agent reliability — and why we keep fixing the wrong one.',
+    link: 'writing/runtime-vs-structural-reliability',
+    uid: 'writing-4',
+    date: 'May 22, 2026',
+  },
+  {
+    title: "Most Production Features Don't Need an Agent",
+    description: 'Why workflows still beat agents — and the cost test that proves it.',
+    link: 'writing/workflows-beat-agents',
+    uid: 'writing-3',
+    date: 'May 21, 2026',
+  },
+  {
     title: 'The 59-Try Rule',
     description: 'Why high-upside success is worth 59 shots?',
     link: 'writing/the-59-try-rule',
