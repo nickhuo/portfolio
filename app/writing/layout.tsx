@@ -3,7 +3,6 @@ import { motion, useReducedMotion } from 'motion/react'
 import { usePathname } from 'next/navigation'
 import { useEffect } from 'react'
 import posthog from 'posthog-js'
-import { ScrollProgress } from '@/components/ui/scroll-progress'
 
 export default function LayoutBlogPost({
   children,
@@ -19,13 +18,7 @@ export default function LayoutBlogPost({
 
   return (
     <>
-      <div className="pointer-events-none fixed left-0 top-0 z-10 h-12 w-full bg-white to-transparent backdrop-blur-xl [-webkit-mask-image:linear-gradient(to_bottom,black,transparent)] dark:bg-[#111110]" />
-      <ScrollProgress
-        className="fixed top-0 z-20 h-0.5 bg-blue-400/70 dark:bg-blue-400/50"
-        springOptions={{
-          bounce: 0,
-        }}
-      />
+      <div className="pointer-events-none absolute left-0 top-0 z-10 h-12 w-full bg-white to-transparent backdrop-blur-xl [-webkit-mask-image:linear-gradient(to_bottom,black,transparent)] dark:bg-[#111110]" />
 
       <motion.main
         initial={prefersReducedMotion ? false : { opacity: 0, y: 20, filter: 'blur(8px)' }}
