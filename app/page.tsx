@@ -158,9 +158,6 @@ export default function Personal() {
                     <p className="text-zinc-500 dark:text-zinc-400">
                       {post.description}
                     </p>
-                    <span className="text-xs text-zinc-400 tabular-nums dark:text-zinc-500">
-                      {post.date}
-                    </span>
                   </div>
                 </Link>
               ))}
