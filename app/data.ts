@@ -39,13 +39,6 @@ export const PROJECTS: Project[] = [
 
 export const BLOG_POSTS: BlogPost[] = [
   {
-    title: 'The Fridge-to-Fork Problem',
-    description: 'Why and how we built an ingredient-first recipe recommendation system',
-    link: 'writing/the-fridge-to-fork-problem',
-    uid: 'writing-3',
-    date: 'Aug 22, 2025',
-  },
-  {
     title: 'The 59-Try Rule',
     description: 'Why high-upside success is worth 59 shots?',
     link: 'writing/the-59-try-rule',

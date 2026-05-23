@@ -18,7 +18,7 @@ export function Header() {
           delay={0.3}
           speedReveal={2}
         >
-          Builder, love making something wonderful
+          I love making something wonderful
         </TextEffect>
       </div>
     </header>
