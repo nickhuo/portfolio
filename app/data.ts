@@ -39,6 +39,13 @@ export const PROJECTS: Project[] = [
 
 export const BLOG_POSTS: BlogPost[] = [
   {
+    title: 'Nowhere to Go',
+    description: 'On the sanctuary effect, going offline, and what forced stillness gives back.',
+    link: 'writing/nowhere-to-go',
+    uid: 'writing-6',
+    date: 'March 18, 2026',
+  },
+  {
     title: 'The Shutter Is Proof You Were There',
     description: "On photography, presence, and what AI images can't give back.",
     link: 'writing/proof-you-were-there',
