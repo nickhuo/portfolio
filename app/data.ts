@@ -39,6 +39,13 @@ export const PROJECTS: Project[] = [
 
 export const BLOG_POSTS: BlogPost[] = [
   {
+    title: 'The Shutter Is Proof You Were There',
+    description: "On photography, presence, and what AI images can't give back.",
+    link: 'writing/proof-you-were-there',
+    uid: 'writing-5',
+    date: 'May 24, 2026',
+  },
+  {
     title: "Your Agent's Bug Is Structural, Not Runtime",
     description: 'Two layers of agent reliability — and why we keep fixing the wrong one.',
     link: 'writing/runtime-vs-structural-reliability',
