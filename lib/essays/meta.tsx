@@ -16,6 +16,7 @@ export function buildEssayMetadata(slug: string, fm: RawFrontmatter): Metadata {
       publishedTime: essay.date,
       authors: [AUTHOR_NAME],
     },
+    ...(essay.draft ? { robots: { index: false, follow: false } } : {}),
   }
 }
 

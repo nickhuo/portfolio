@@ -19,6 +19,21 @@ describe('buildEssayMetadata', () => {
       authors: ['Jiajun (Nick) Huo'],
     })
   })
+
+  test('omits robots for a published (non-draft) essay', () => {
+    const meta = buildEssayMetadata('nowhere-to-go', FM)
+    expect(meta.robots).toBeUndefined()
+  })
+
+  test('marks a draft essay noindex', () => {
+    const meta = buildEssayMetadata('wip', {
+      title: 'WIP',
+      description: 'Not ready.',
+      date: '2025-08-22',
+      draft: true,
+    })
+    expect(meta.robots).toEqual({ index: false, follow: false })
+  })
 })
 
 describe('essayJsonLd', () => {
