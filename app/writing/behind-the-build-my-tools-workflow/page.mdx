@@ -1,15 +1,15 @@
-export const metadata = {
-  title: 'Behind the Build: My Tools & Workflow',
-  description: 'A craftsman must first sharpen his tools. How I refined my productivity system through dozens of iterations.',
-  alternates: { canonical: '/writing/behind-the-build-my-tools-workflow' },
-  openGraph: {
-    type: 'article',
-    publishedTime: '2025-08-04',
-    authors: ['Jiajun (Nick) Huo'],
-  },
-}
+---
+title: "Behind the Build: My Tools & Workflow"
+description: "A craftsman must first sharpen his tools. How I refined my productivity system through dozens of iterations."
+date: "2025-08-04"
+---
 
-<script type="application/ld+json">{`{"@context":"https://schema.org","@type":"BlogPosting","headline":"Behind the Build: My Tools & Workflow","description":"A craftsman must first sharpen his tools. How I refined my productivity system through dozens of iterations.","datePublished":"2025-08-04","url":"https://nickhuo.com/writing/behind-the-build-my-tools-workflow","author":{"@type":"Person","name":"Jiajun (Nick) Huo","url":"https://nickhuo.com"}}`}</script>
+import { EssayJsonLd, buildEssayMetadata } from '@/lib/essays/meta'
+
+export const slug = 'behind-the-build-my-tools-workflow'
+export const metadata = buildEssayMetadata(slug, frontmatter)
+
+<EssayJsonLd slug={slug} frontmatter={frontmatter} />
 
 # Behind the Build: My Tools & Workflow
 
