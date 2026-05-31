@@ -6,14 +6,6 @@ type Project = {
   id: string
 }
 
-type BlogPost = {
-  title: string
-  description: string
-  link: string
-  uid: string
-  date: string
-}
-
 type SocialLink = {
   label: string
   link: string
@@ -33,59 +25,6 @@ export const PROJECTS: Project[] = [
   //   link: 'https://your-project-link.com',
   //   video: '/project/your-project-video.mp4',
   //   id: 'project2',
-  // },
-]
-
-
-export const BLOG_POSTS: BlogPost[] = [
-  {
-    title: 'Nowhere to Go',
-    description: 'On the sanctuary effect, going offline, and what forced stillness gives back.',
-    link: 'writing/nowhere-to-go',
-    uid: 'writing-6',
-    date: 'March 18, 2026',
-  },
-  {
-    title: 'The Shutter Is Proof You Were There',
-    description: "On photography, presence, and what AI images can't give back.",
-    link: 'writing/proof-you-were-there',
-    uid: 'writing-5',
-    date: 'May 24, 2026',
-  },
-  {
-    title: "Your Agent's Bug Is Structural, Not Runtime",
-    description: 'Two layers of agent reliability — and why we keep fixing the wrong one.',
-    link: 'writing/runtime-vs-structural-reliability',
-    uid: 'writing-4',
-    date: 'May 22, 2026',
-  },
-  {
-    title: "Most Production Features Don't Need an Agent",
-    description: 'Why workflows still beat agents — and the cost test that proves it.',
-    link: 'writing/workflows-beat-agents',
-    uid: 'writing-3',
-    date: 'May 21, 2026',
-  },
-  {
-    title: 'The 59-Try Rule',
-    description: 'Why high-upside success is worth 59 shots?',
-    link: 'writing/the-59-try-rule',
-    uid: 'writing-2',
-    date: 'Aug 4, 2025',
-  },
-  {
-    title: 'Behind the Build: My Tools & Workflow',
-    description: '”A craftsman must first sharpen his tools before he can do his work well”',
-    link: 'writing/behind-the-build-my-tools-workflow',
-    uid: 'writing-1',
-    date: 'Aug 4, 2025',
-  },
-  // add more blog posts...
-  // {
-  //   title: 'Your Blog Post Title',
-  //   description: 'Blog post description...',
-  //   link: '/blog/your-blog-post-slug',
-  //   uid: 'blog-2',
   // },
 ]
 
