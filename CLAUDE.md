@@ -34,3 +34,17 @@ The voice and aesthetic should project a clear point of view. Not hedged, not ge
 4. **Consistent craft at every scale** — The same care applied to the hero applies to a hover state on a footnote.
 
 5. **Content leads, chrome follows** — Writing and projects are the product. The interface should make those shine and then get out of the way.
+
+## Agent skills
+
+### Issue tracker
+
+Issues and PRDs live as local markdown files under `.scratch/<feature>/`. See `docs/agents/issue-tracker.md`.
+
+### Triage labels
+
+Five canonical roles, mapped 1:1 to their default strings (`needs-triage`, `needs-info`, `ready-for-agent`, `ready-for-human`, `wontfix`). See `docs/agents/triage-labels.md`.
+
+### Domain docs
+
+Single-context: one `CONTEXT.md` + `docs/adr/` at the repo root. See `docs/agents/domain.md`.
