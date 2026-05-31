@@ -22,6 +22,9 @@ export function normalizeEssayFrontmatter(
   slug: string,
   data: Record<string, unknown>,
 ): Essay {
+  if (data === null || typeof data !== 'object') {
+    throw new Error(`Essay "${slug}": missing or invalid frontmatter`)
+  }
   const title = requireString(slug, data, 'title')
   const description = requireString(slug, data, 'description')
   const date = requireString(slug, data, 'date')

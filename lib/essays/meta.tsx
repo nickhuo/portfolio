@@ -46,6 +46,7 @@ export function EssayJsonLd({
   slug: string
   frontmatter: RawFrontmatter
 }) {
+  if (normalizeEssayFrontmatter(slug, frontmatter).draft) return null
   return (
     <script
       type="application/ld+json"

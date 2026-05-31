@@ -40,6 +40,12 @@ describe('normalizeEssayFrontmatter', () => {
     ).toThrow(/broken/)
   })
 
+  test('throws a clear error when frontmatter is missing', () => {
+    expect(() =>
+      normalizeEssayFrontmatter('no-fm', undefined as unknown as Record<string, unknown>),
+    ).toThrow(/missing or invalid frontmatter/)
+  })
+
   test('throws when date is not YYYY-MM-DD', () => {
     expect(() =>
       normalizeEssayFrontmatter('bad-date', {
