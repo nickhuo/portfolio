@@ -1,15 +1,16 @@
-export const metadata = {
-  title: 'The Fridge-to-Fork Problem',
-  description: 'Why and how we built an ingredient-first recipe recommendation system',
-  alternates: { canonical: '/writing/the-fridge-to-fork-problem' },
-  openGraph: {
-    type: 'article',
-    publishedTime: '2025-08-22',
-    authors: ['Jiajun (Nick) Huo'],
-  },
-}
+---
+title: "The Fridge-to-Fork Problem"
+description: "Why and how we built an ingredient-first recipe recommendation system."
+date: "2025-08-22"
+draft: true
+---
 
-<script type="application/ld+json">{`{"@context":"https://schema.org","@type":"BlogPosting","headline":"The Fridge-to-Fork Problem","description":"Why and how we built an ingredient-first recipe recommendation system","datePublished":"2025-08-22","url":"https://nickhuo.com/writing/the-fridge-to-fork-problem","author":{"@type":"Person","name":"Jiajun (Nick) Huo","url":"https://nickhuo.com"}}`}</script>
+import { EssayJsonLd, buildEssayMetadata } from '@/lib/essays/meta'
+
+export const slug = 'the-fridge-to-fork-problem'
+export const metadata = buildEssayMetadata(slug, frontmatter)
+
+<EssayJsonLd slug={slug} frontmatter={frontmatter} />
 
 <Cover
   src="/project/bitematch.mp4"

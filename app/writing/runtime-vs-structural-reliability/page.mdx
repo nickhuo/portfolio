@@ -1,15 +1,15 @@
-export const metadata = {
-  title: "Your Agent's Bug Is Structural, Not Runtime",
-  description: 'Most teams add another judge when they should change the structure. Two layers of agent reliability, and why we invest in the wrong one.',
-  alternates: { canonical: '/writing/runtime-vs-structural-reliability' },
-  openGraph: {
-    type: 'article',
-    publishedTime: '2026-05-22',
-    authors: ['Jiajun (Nick) Huo'],
-  },
-}
+---
+title: "Your Agent's Bug Is Structural, Not Runtime"
+description: "Most teams add another judge when they should change the structure. Two layers of agent reliability, and why we invest in the wrong one."
+date: "2026-05-22"
+---
 
-<script type="application/ld+json">{`{"@context":"https://schema.org","@type":"BlogPosting","headline":"Your Agent's Bug Is Structural, Not Runtime","description":"Most teams add another judge when they should change the structure. Two layers of agent reliability, and why we invest in the wrong one.","datePublished":"2026-05-22","url":"https://nickhuo.com/writing/runtime-vs-structural-reliability","author":{"@type":"Person","name":"Jiajun (Nick) Huo","url":"https://nickhuo.com"}}`}</script>
+import { EssayJsonLd, buildEssayMetadata } from '@/lib/essays/meta'
+
+export const slug = 'runtime-vs-structural-reliability'
+export const metadata = buildEssayMetadata(slug, frontmatter)
+
+<EssayJsonLd slug={slug} frontmatter={frontmatter} />
 
 # Your Agent's Bug Is Structural, Not Runtime
 

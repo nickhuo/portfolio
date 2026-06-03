@@ -1,9 +1,12 @@
 import { WEBSITE_URL } from '@/lib/constants'
-import { PROJECTS, BLOG_POSTS, SOCIAL_LINKS } from '@/app/data'
+import { PROJECTS, SOCIAL_LINKS } from '@/app/data'
+import { getEssays } from '@/lib/essays/scan'
+import { formatEssayDate } from '@/lib/essays/parse'
 
 export const dynamic = 'force-static'
 
 export function GET() {
+  const essays = getEssays()
   const content = `# Jiajun (Nick) Huo
 
 > Software engineer and builder. Former PM and data scientist. Currently at UIUC building AI agents driven by product thinking.
@@ -16,12 +19,19 @@ ${PROJECTS.map((p) => `- [${p.name}](${p.link}): ${p.description}`).join('\n')}
 
 ## Thoughts
 
-${BLOG_POSTS.map((p) => `- [${p.title}](${WEBSITE_URL}/${p.link}): ${p.description} (${p.date})`).join('\n')}
+${essays
+  .map(
+    (e) =>
+      `- [${e.title}](${WEBSITE_URL}/writing/${e.slug}): ${e.description} (${formatEssayDate(e.date)})`,
+  )
+  .join('\n')}
 
 ## Links
 
 - Resume: ${WEBSITE_URL}/resume
-${SOCIAL_LINKS.filter((l) => !l.link.startsWith('mailto:')).map((l) => `- ${l.label}: ${l.link}`).join('\n')}
+${SOCIAL_LINKS.filter((l) => !l.link.startsWith('mailto:'))
+  .map((l) => `- ${l.label}: ${l.link}`)
+  .join('\n')}
 - Email: jiajunhuo726@gmail.com
 `
 

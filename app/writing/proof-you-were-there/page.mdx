@@ -1,15 +1,15 @@
-export const metadata = {
-  title: 'The Shutter Is Proof You Were There',
-  description: "On photography, presence, and the one thing a perfect AI image can't give back.",
-  alternates: { canonical: '/writing/proof-you-were-there' },
-  openGraph: {
-    type: 'article',
-    publishedTime: '2026-05-24',
-    authors: ['Jiajun (Nick) Huo'],
-  },
-}
+---
+title: "The Shutter Is Proof You Were There"
+description: "On photography, presence, and the one thing a perfect AI image can't give back."
+date: "2026-05-24"
+---
 
-<script type="application/ld+json">{`{"@context":"https://schema.org","@type":"BlogPosting","headline":"The Shutter Is Proof You Were There","description":"On photography, presence, and the one thing a perfect AI image can't give back.","datePublished":"2026-05-24","url":"https://nickhuo.com/writing/proof-you-were-there","author":{"@type":"Person","name":"Jiajun (Nick) Huo","url":"https://nickhuo.com"}}`}</script>
+import { EssayJsonLd, buildEssayMetadata } from '@/lib/essays/meta'
+
+export const slug = 'proof-you-were-there'
+export const metadata = buildEssayMetadata(slug, frontmatter)
+
+<EssayJsonLd slug={slug} frontmatter={frontmatter} />
 
 # The Shutter Is Proof You Were There
 
