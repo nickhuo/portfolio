@@ -1,0 +1,32 @@
+---
+title: "The Zen of A/B Testing"
+description: "Small-step trial and error and rapid iteration — and why A/B testing is a compass, not a silver bullet."
+date: "2025-03-15"
+---
+
+import { EssayJsonLd, buildEssayMetadata } from '@/lib/essays/meta'
+
+export const slug = 'the-zen-of-ab-testing'
+export const metadata = buildEssayMetadata(slug, frontmatter)
+
+<EssayJsonLd slug={slug} frontmatter={frontmatter} />
+
+# The Zen of A/B Testing
+
+At the heart of A/B testing is the idea of **small-step trial and error and rapid iteration**.
+
+This is especially useful in industries that change quickly. Instead of trying to come up with the perfect solution right away, A/B testing helps us make small adjustments based on real user feedback. Each little experiment helps us figure out what works a bit better, and over time, we build up small wins that lead to much bigger gains.
+
+<Cover
+  src="/writing/the-zen-of-ab-testing/iteration-diagram.png"
+  alt="A grid of eight iterations of variants, where successful variants move forward and failed ones are discarded, converging on the best solution"
+  caption="Small-step trial and error, rapid iteration"
+/>
+
+## A/B testing is not a silver bullet
+
+It can sometimes foster a 'conversion-first' mindset. While positive results from the test may show an increase in conversion rates, they don't always guarantee a better user experience. In fact, those conversions could come at the cost of creating a less enjoyable experience for the user.
+
+Additionally, A/B testing typically focuses on current user preferences and short-term data. It's critical to remember that each experiment should be designed with the long-term goals and vision of the business in mind, ensuring that the changes tested contribute to sustainable value rather than just temporary gains.
+
+A/B testing will only tell you if a strategy is acceptable, but it doesn't explain why users prefer one option over the other. So, it's important to keep asking why users made that choice. In this way, you can gain valuable insights that help you understand your users.
