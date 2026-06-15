@@ -1,6 +1,6 @@
 ---
-title: "The 59-Try Rule"
-description: "Why high-upside success is worth 59 shots — a mathematical case for low-cost, high-return experiments."
+title: "From n to p"
+description: "When trials are free, the edge is what won't scale"
 date: "2025-08-04"
 ---
 
@@ -11,61 +11,58 @@ export const metadata = buildEssayMetadata(slug, frontmatter)
 
 <EssayJsonLd slug={slug} frontmatter={frontmatter} />
 
-# The 59-Try Rule
+# From n to p
 
-**TL;DR:** To succeed in high-upside domains, focus on low-cost experiments (cost = $c$), accept the need for ~59 attempts, and target outcomes where one win yields at least $60c$ (aka. 5900% return)
-
-| Question | Meaning |
-| --- | --- |
-| What is the cost of each attempt? | $c$ |
-| How many attempts are needed? | 59 attempts |
-| How big must the payoff be to be worth it? | Greater than $60c$ |
-| What are we looking for? | Projects where a single success yields at least a 5900% return |
-| Keep thinking which domains have this characteristic? | The answer is up to you |
-| What's the key action strategy? | Control costs + Iterate quickly + Focus on exponential opportunities |
+**TL;DR:** When trials were expensive, the edge was scale — run enough cheap shots and a win was only a matter of time. LLMs and agents drove the cost of a trial toward zero, so scale is now the cover charge everyone pays. The edge moved from the denominator (*n*, how many tries) to the numerator (*p*, the odds each try lands) — to taste, judgment, and the choice of which tail to bet on.
 
 <Cover
   src="/writing/the-59-try-rule/59-try-rule-mathematical-visualization.png"
   alt="The 59-Try Rule visualization"
-  caption="The 59-Try Rule: Mathematical approach to high-upside experiments"
+  caption="The 59-Try Rule: one win has to pay for the 58 misses before it."
 />
 
-When building something new—be it a product, a startup, or even just testing ideas—failure is part of the journey. But how many tries does it take before you're likely to hit on success?
+Succeeding in high-upside ventures comes down to the mathematics of iteration.
 
-Let's break it down in plain language and a little math:
-
-Say the idea has a 5% chance of success. That means a **95% chance of failure** in a single trial
-
-The probability of failing *every time* across $n$ tries? That's $(0.95)^n$.
-
-What we care about is the flip side—getting **at least one success**. That probability is:
+Say each attempt has a 5% success rate. How many tries does it take to be 95% confident of at least one success? The probability of failing every time across *n* tries is (0.95)ⁿ, so the probability of **at least one success** is:
 
 $$P(\text{at least one success}) = 1 - (0.95)^n$$
 
-Let's say we want to be 95% sure of getting at least one win. We set up the inequality:
+Set that to 0.95 and solve:
 
-$$1 - (0.95)^n \geq 0.95$$
+$$1 - (0.95)^n \geq 0.95 \;\Rightarrow\; n \geq \frac{\log(0.05)}{\log(0.95)} \approx 58.4$$
 
-Let's do some math magic. Solve this equation for n, then we have:
+Call it 59. If each trial costs the same *c*, the whole run costs 59*c*. For the game to be worth playing, a single success has to return more than 60*c* — a 5,900% return. One hit pays for the 59 misses before it.
 
-$$n \geq \frac{\log(0.05)}{\log(0.95)} \approx 58.4$$
+| Question | Meaning |
+| --- | --- |
+| What is the cost of each attempt? | *c* |
+| How many attempts are needed? | 59 |
+| How big must the payoff be? | More than 60*c* |
+| What are we looking for? | A single success worth at least a 5,900% return |
+| The key action | Control cost + iterate fast + only play exponential games |
 
-So, if each of your ideas has only a 5% chance of working, you need to try **at least 59 times** to be 95% sure that one of them will succeed.
+Two — really three — things have to line up: keep every trial cheap and roughly the same cost *c*; run the 59 without burning out; and only play domains where one breakthrough justifies all the failures. This reframes failure as a statistical inevitability rather than a setback. Iteration is just the mechanism for reaching asymmetric risk and reward.
 
-## Deep Dive: Trial Cost vs. 5900% ROI
+I worshipped this. Brute force, scaling laws, the law of large numbers. Point in the right direction, make the denominator big enough, and even a tiny probability eventually finds a numerator. The 59-Try Rule was just the math skin on that faith.
 
-So let's say every trial—be it launching a product, running an ad, testing a prototype—costs $c$. If it takes 59 trials to have a 95% chance of success (based on 5% success probability per attempt), then the **expected total cost** is:
+Then I found the hole.
 
-$$\text{Total Cost} = 59 \cdot c$$
+The law of large numbers governs the *mean* — the body of the distribution. But most results that actually matter are power-law, decided by extreme values in the *tail*. Brute force optimizes volume; it works on the body and does nothing for the tail. The 59-Try Rule treats hitting the tail as a volume problem — as if a win could be manufactured by buying enough tickets. That only holds when tickets are expensive. Back then, the edge was simply being able to afford more trials than the next person.
 
-**What Does an ROI > 5900% Even Mean?**
+But tickets are becoming free.
 
-We're asking: *Is there anything worth doing that, if successful, gives us a return that's 59 times the cost?* That is:
+LLMs drove the cost of distributing intelligence to nearly zero. Agents gave scale to things that could never be scaled before, and scaled them cheap — software, content, even domain know-how. Go back to the formula: as *c* → 0, so does 59*c*. The budget constraint disappears. 59 tries, 5,900 tries — everyone can afford them now.
 
-$$\text{ROI} = \frac{\text{Profit} - 59c}{59c} > 59 \Rightarrow \text{Profit} > 60c$$
+So the constraint moved. It is no longer affordability; it is the height of *p* per ticket, and which distribution the ticket is drawn from. The lever switched from *n* to *p*.
 
-The answer is up to you.
+When everyone holds the same scaling tools, scale becomes the cover charge, not the edge. Value doesn't vanish; it moves to whatever is still scarce — taste, judgment, the choice of problem, distribution and trust, originality. The economist's way to say it: value flows to the bottleneck; commoditize the complement and the scarce side appreciates. Trials (*n*) are the complement to taste (*p*) — once the tools commoditize the trials, the bottleneck slides from *n* to *p*.
 
----
+And there is only one way to raise *p* and pick the right game: the manual, the dumb, the things nobody else wants to do.
 
-*Tags: Investment*
+This is why Paul Graham's [*Do Things That Don't Scale*](https://www.paulgraham.com/ds.html), written in 2013, keeps reading true. It was written for an age when trials were expensive, and it is more correct in an age when they are free — precisely because once scale is commoditized, the unscalable becomes the only source of asymmetry left. The point of the dumb handwork is to raise the odds on every trial, to steer toward the games that are actually power-law, to build the moat nobody else bothers with.
+
+And this age adds one extra verb: *at scale*. Agents can industrialize even the handwork that never scaled before — letting dumb, patient effort settle into a scalable asset. The hard, right move: make the clumsy first version by hand, then let the machine run it ten thousand times.
+
+So this is a quiet redistribution of value. In the last era, the winner was whoever had the biggest denominator — try the most, hit the most. In the next one, the denominator is free for everyone, and the winner is whoever has the highest numerator — whose taste, judgment, and originality make each trial more likely to land than anyone else's, and who picked the right tail to bet on.
+
+Scale is the cover charge now. Everyone has paid it. The asymmetry only lives in the dumb things that can't be scaled — the ones that end up scaled anyway.

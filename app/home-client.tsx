@@ -108,7 +108,7 @@ export function PersonalHome({ essays }: { essays: Essay[] }) {
           </h2>
           <div className="flex-1">
             <p className="text-zinc-600 dark:text-zinc-400">
-              I build software that learns from how people actually use it. The interesting part was never the model or the infra on its own — it&apos;s the loop between what people need and a system reliable enough to benefit them. Right now I&apos;m researching multi-agent for personalized learning at the Beckman Institute, and helping build an AI copilot for aircraft. Before this, I built data infrastructure at Sonic SVM on Solana, and worked on growth and ads at Tencent and Baidu. Looking back,{' '}
+              I build product people actually love and use it. The interesting part was never the model or the infra on its own — it&apos;s the loop between what people need and a system reliable enough to benefit them. Right now I&apos;m researching multi-agent for personalized learning at the Beckman Institute, and helping build an AI copilot for aircraft. Before this, I built data infrastructure at Sonic SVM on Solana, and worked on growth and ads at Tencent and Baidu. Looking back,{' '}
               <a
                 href="https://www.linkedin.com/in/nickhuo/details/experience/"
                 target="_blank"
